@@ -1,0 +1,31 @@
+.card{
+    padding: 2rem 4rem;
+    border-radius: 1rem;
+    width: 20%;
+    box-shadow: 1px 5px 15px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.card--image{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.movie--title{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: crimson;
+}
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: gray;
+}
+
+.movie--desc{
+    text-align: left;
+    color: gray;
+}
