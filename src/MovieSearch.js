@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import './moviesearch.css';
+import "./moviesearch.css";
 
-const MovieSearch = ({collectTerm}) => {
+const MovieSearch = ({ collectTerm }) => {
   const [query, setQuery] = useState("");
 
-  const handleSubmit = (e) =>{
-      e.preventDefault();
-      collectTerm(query);
-      console.log(query)
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    collectTerm(query);
+  };
 
   return (
-    <div className='form-container'>
+    <div className="form-container">
       <form className="form" onSubmit={handleSubmit}>
         <label className="label" htmlFor="query">
           Movie name

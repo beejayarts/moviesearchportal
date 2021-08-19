@@ -3,41 +3,26 @@ import "./App.css";
 import MovieSearch from "./MovieSearch";
 import MovieCard from "./MovieCard";
 
-// const api_key = 'a81cfbc24ce9eb4338a6bdfe1b3bd2bf';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState("James bond");
 
   useEffect(() => {
     // const url = `https://api.themoviedb.org/3/movie/550?api_key=a81cfbc24ce9eb4338a6bdfe1b3bd2bf&language=en-US&query=${term}&page=1&include_adult=false`;
 
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=a81cfbc24ce9eb4338a6bdfe1b3bd2bf&query=${term}`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${term}`;
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data.results);
         setIsLoading(false);
-        console.log(data.results);
       })
       .catch((err) => console.log(err.response));
   }, [term]);
-
-
-  
-
-  let itemsToRender; 
-   if (movies){
-    let itemsToRender = movies.filter(movie => movie.poster_path).map((movie) => {
-      return <MovieCard key={movie.id} oneMovie={movie} />;
-    }) 
-   }else {
-    itemsToRender = "Loading...";
-  }
-  
-
 
   return (
     <div className="App">
@@ -49,24 +34,16 @@ const App = () => {
         <h1 className="error">Oga, sorry this movie no dey</h1>
       )}
 
-      
-
-      <div className="card-list">{itemsToRender }</div>
-  
-   {/* WHERE MY PROBLEM LIES */}
-
-      {/* {isLoading  ? (
+      {isLoading ? (
         <h1 className="error">Loading...</h1>
       ) : (
-        <div className='card-list'>
-        {movies.filter(movie=>movie.poster_path).map((movie) => {
-            return <MovieCard key={movie.id} oneMovie={movie} />;
-          })}
+        <div className="card-list">
+          {movies.length > 0 &&
+            movies
+              .filter((movie) => movie.poster_path)
+              .map((movie) => <MovieCard key={movie.id} oneMovie={movie} />)}
         </div>
-      )} */}
-
-{/* END OF WHERE MY PROBLEM LIES */}
-
+      )}
     </div>
   );
 };
