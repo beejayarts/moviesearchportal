@@ -25,6 +25,20 @@ const App = () => {
       .catch((err) => console.log(err.response));
   }, [term]);
 
+
+  
+
+  let itemsToRender; 
+   if (movies){
+    let itemsToRender = movies.filter(movie => movie.poster_path).map((movie) => {
+      return <MovieCard key={movie.id} oneMovie={movie} />;
+    }) 
+   }else {
+    itemsToRender = "Loading...";
+  }
+  
+
+
   return (
     <div className="App">
       <h1 className="title"> Beejay MoviePortal </h1>
@@ -35,27 +49,24 @@ const App = () => {
         <h1 className="error">Oga, sorry this movie no dey</h1>
       )}
 
-      {
-        <div className="card-list">
-          { 
-           !isLoading && movies !== 0 && ( movies
-            .filter((movie) => movie.poster_path)
-            .map((movie) => {
-              return <MovieCard key={movie.id} oneMovie={movie} />;
-            })) 
-          }
-        </div>
-      }
+      
+
+      <div className="card-list">{itemsToRender }</div>
+  
+   {/* WHERE MY PROBLEM LIES */}
 
       {/* {isLoading  ? (
         <h1 className="error">Loading...</h1>
       ) : (
         <div className='card-list'>
-          {movies.filter(movie=>movie.poster_path).map((movie) => {
+        {movies.filter(movie=>movie.poster_path).map((movie) => {
             return <MovieCard key={movie.id} oneMovie={movie} />;
           })}
         </div>
       )} */}
+
+{/* END OF WHERE MY PROBLEM LIES */}
+
     </div>
   );
 };

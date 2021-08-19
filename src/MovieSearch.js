@@ -21,7 +21,7 @@ const MovieSearch = ({collectTerm}) => {
           type="text"
           name="query"
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Titanic..."
+          placeholder="James Bond..."
           value={query}
         />
         <button className="button" type="submit">
