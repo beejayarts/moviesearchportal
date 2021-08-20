@@ -30,7 +30,7 @@ const App = () => {
 
       <MovieSearch collectTerm={(text) => setTerm(text)} />
       {/* checking of images dey load or not */}
-      {isLoading && movies === 0 && (
+      {isLoading && movies.length === 0 && (
         <h1 className="error">Oga, sorry this movie no dey</h1>
       )}
 
